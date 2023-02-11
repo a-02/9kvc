@@ -1,0 +1,25 @@
+Feb. 8, 2023
+
+-- areas
+1. discography
+2. "store"
+3. gemmatria
+4. links
+
+-- gemmatria
+
+phrase in the middle
+
+input box below phrase
+
+user phrases after being validated (dont tell user) are then assigned a score 
+
+phrase determined by "gemmatria score" complicated use of userdata
+
+phrase pulled from sqlite database
+
+user can only get 1 phrase every 24 hours, 39 minutes, and 35 seconds
+
+database looks like:
+
+id phrase score date_uploaded 
