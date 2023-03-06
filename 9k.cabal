@@ -46,8 +46,9 @@ executable 9k
       , sqlite-simple
       , scotty
       , 9k
-      , wai-extra
+      , wai-middleware-static
       , network
+      , time
 
     hs-source-dirs:   app
     default-language: Haskell2010
