@@ -4,21 +4,14 @@ let
 
   inherit (nixpkgs) pkgs;
 
-  f = { mkDerivation, base, bytestring, directory, http-media, lib
-      , lucid, scotty, servant, servant-server, sqlite-simple, text, wai
-      , warp
+  f = { mkDerivation, arithmoi, base, bv, bytestring, directory
+      , http-media, lib, lucid, network, scotty, servant, servant-server
+      , sqlite-simple, text, time, wai, wai-middleware-static, warp
       }:
       mkDerivation {
         pname = "9k";
         version = "0";
         src = ./.;
-        isLibrary = true;
-        isExecutable = true;
-        libraryHaskellDepends = [ base ];
-        executableHaskellDepends = [
-          base bytestring directory http-media lucid scotty servant
-          servant-server sqlite-simple text wai warp
-        ];
         enableSharedExecutables = false;
         enableSharedLibraries = false;
         configureFlags = [
@@ -27,6 +20,14 @@ let
           "--ghc-option=-optl=-L${pkgs.gmp6.override { withStatic = true; }}/lib"
           "--ghc-option=-optl=-L${pkgs.zlib.static}/lib"
           "--ghc-option=-optl=-L${pkgs.glibc.static}/lib"
+        ];
+        isLibrary = true;
+        isExecutable = true;
+        libraryHaskellDepends = [ base ];
+        executableHaskellDepends = [
+          arithmoi base bv bytestring directory http-media lucid network
+          scotty servant servant-server sqlite-simple text time wai
+          wai-middleware-static warp
         ];
         license = lib.licenses.bsd3;
         mainProgram = "9k";

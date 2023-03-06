@@ -37,7 +37,7 @@ instance ToRow Fortune where
 main :: IO ()
 main = do
   conn <- open "gematria.db"
-  scottyApp (app conn) >>= run 23 
+  scottyApp (app conn) >>= run 2345
   close conn
 
 --  execute conn
@@ -181,7 +181,6 @@ pageContentAbout = do
       ]
     body_ $ do
       p_ "Plot of internet land owned by nikshalark. You seem to be lost."
-      br_ 
       p_ "My interests include functional programmimng & computer music."
 
 pageContentFortune :: String -> Int -> Bool -> Html ()
@@ -299,5 +298,3 @@ pageContentHome = do
         div_ [class_ "box"] "Out of order."
         div_ [class_ "box"] $ do
           a_ [href_ "/about"] "About."
-
--- note: for fortunes with the same ID, select by xor with DATE, not time
