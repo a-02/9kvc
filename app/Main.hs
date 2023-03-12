@@ -37,7 +37,7 @@ instance ToRow Fortune where
 main :: IO ()
 main = do
   conn <- open "gematria.db"
-  scottyApp (app conn) >>= run 2345
+  scottyApp (app conn) >>= run 23456
   close conn
 
 --  execute conn
@@ -170,18 +170,56 @@ pageContentAbout = do
   doctypehtml_ $ do
     style_ $ Text.pack $ unlines
       [ "@font-face {"
-      , "  font-family: \"Manrope\";"
-      , "  src: local(\"Manrope\"), url(\"Manrope-ExtraBold.woff2\"), format(\"woff\");"
+      , "  font-family: \"Agave\";"
+      , "  src: local(\"Agave\"), url(\"Agave-Regular.ttf\"), format(\"truetype\");"
+      , "}"
+      , "header {"
+      , "  margin: 0;"
+      , "  padding: 1px;"
+      , "}"
+      , "h1 {"
+      , "  font-size: 40px;"
+      , "  font-family: \"Agave\";"
+      , "  margin: 10px;"
+      , "}"
+      , "h2 {"
+      , "  border-bottom: 2px solid black;"
+      , "  font-size: 30px;"
+      , "  font-family: \"Agave\";"
+      , "  margin: 20px 128px 10px 128px;"
       , "}"
       , "body {"
-      , "  font-family: \"Manrope\";"
-      , "  background-color: #ccc;"
+      , "  font-family: \"Agave\";"
+      , "  background-color: #d9d9d9;"
       , "  color: #000;"
+      , "  font-size: 30px;"
+      , "}"
+      , "p, ul {"
+      , " margin: 0px 128px 0px 128px;"
+      , " font-weight: normal;"
+      , " font-size: 20px;"
       , "}"
       ]
+    header_ $ do
+      h1_ $ "9k.vc"
     body_ $ do
-      p_ "Plot of internet land owned by nikshalark. You seem to be lost."
-      p_ "My interests include functional programmimng & computer music."
+      h2_ "Who" 
+      p_ "Nikshalark, a musician living in South Lawndale, Chicago, Ill."
+      p_ "This is my personal website, where you can find the results of my extra-professional activities."
+      h2_ "Contact" 
+      p_ "Please direct all inquiries to: nks@9k.vc"
+      p_ "All other social media: @nikshalark"
+      h2_ "Gear" 
+      ul_ $ do
+        li_ "Thinkpad T430"
+        li_ "Macbook Pro M1 (2021)"
+        li_ "Dell PowerEdge 1950 (x2)"
+        li_ "iMac G3 (2000)"
+        li_ "Dell Latitude 5530 (2023)"
+        li_ "Casio MT-100"
+        li_ "Casio MT-240"
+        li_ "Dirtywave M8"
+        li_ "Audio-Technica AT-813"
 
 pageContentFortune :: String -> Int -> Bool -> Html ()
 pageContentFortune fortune luckyNumber submittedRecently = do
