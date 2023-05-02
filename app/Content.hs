@@ -58,3 +58,12 @@ textContent texts = do
     
 secretContent :: Html ()
 secretContent = undefined
+
+wofferContent :: Html ()
+wofferContent = doctypehtml_ $ do
+  body_ $ do
+    h1_ "the woffer..."
+    form_ [action_ "/woffer", enctype_ "multipart/form-data", method_ "post"] $ do
+      input_ [id_ "file", type_ "file", name_ "file"] 
+      label_ [id_ "file-label", class_ "btn-1", for_ "file"] "upload that shit son"
+      button_ [id_ "submit", type_ "submit"] "go! go!!!!"

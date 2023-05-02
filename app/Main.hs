@@ -11,7 +11,11 @@ import Lucid
 import Web.Scotty
 import Network.Wai.Handler.Warp
 import Network.Wai.Middleware.Static
+import Network.Wai.Parse
 import System.Directory
+import System.FilePath ((</>))
+import Data.ByteString.Lazy qualified as BS
+import Data.ByteString.Char8 qualified as BSC8
 
 import Content
 
@@ -54,3 +58,9 @@ app (tunes,texts) = do
     html $ renderText (textContent texts)
   get "/secret" do
     html $ renderText secretContent
+  get "/woffer" do
+    html $ renderText wofferContent
+  post "/woffer" do
+    fs <- files
+    let fs' = fmap (\(_, fi) -> (fileContent fi, BSC8.unpack $ fileName fi)) fs
+    liftIO $ mapM_ (\(a,b) -> BS.writeFile ("uploads" </> b) a) fs'
