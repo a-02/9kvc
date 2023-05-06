@@ -45,19 +45,29 @@ textContent texts = do
     style_ . desktopAtRule $ T.concat 
       [ outsideStyling
       , leftsideStyling 
-      , tunesStyling
+      , textsStyling
       , mainStyling 
       ]
     body_ [class_ "outerflex"] $ do
-      leftSide
-      div_ [class_ "half"] $ 
-        mapM_ (\fp -> 
-          do p_ $ toHtml fp; 
-             audio_ [controls_ "", src_ ("/texts/" ++ T.pack fp)] $ "";
+      div_ [class_ "outerleft menu"] leftSide
+      div_ [class_ "outterright textbox"] $ 
+        mapM_ (\fp -> div_ [class_ "innertextbox"] $
+          do h3_ $ a_ [href_ ("/texts/" ++ T.pack fp)] $ toHtml fp
         ) texts
     
 secretContent :: Html ()
-secretContent = undefined
+secretContent = 
+  doctypehtml_ $ do
+    style_ . desktopAtRule $ T.concat 
+      [ outsideStyling
+      , leftsideStyling 
+      , secretStyling
+      , mainStyling 
+      ]
+    body_ [class_ "outerflex"] $ do
+      div_ [class_ "outerleft menu"] leftSide
+      div_ [class_ "outterright textbox"] $ 
+        h1_ "???"
 
 wofferContent :: Html ()
 wofferContent = doctypehtml_ $ do

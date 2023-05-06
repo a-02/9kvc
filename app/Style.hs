@@ -62,16 +62,45 @@ tunesStyling = T.unlines
   , "}"
   ]
 
+textsStyling :: T.Text
+textsStyling = T.unlines
+  [ "p {"
+  , "  font-size: 0.8em;"
+  , "  margin: 0;"
+  , "}"
+  , ".textbox {"
+  , "  display: flex;"
+  , "  margin: 10px;"
+  , "  flex-direction: row;"
+  , "  flex-wrap: wrap;"
+  , "  gap: 10px;"
+  , "  color: #e09e00;"
+  , "  height: 10%;"
+  , "}"
+  , ".innertextbox {"
+  , "  box-shadow: 0px 1px 3px rgba(0,0,0,0.4);"
+  , "  border: solid 2px #fff;"
+  , "  padding: 10px;"
+  , "}" 
+  , "h3 {" 
+  , "  font-size: 2em;"
+  , "  margin: 0;"
+  , "}"
+  , "a {"
+  , "  color: #e09300;"
+  , "}"
+  ]
+
 
 
 mainStyling :: T.Text
 mainStyling = T.unlines 
   [ "@font-face {"
-  , "  font-family: \"Inter\";"
-  , "  src: url(\"/font/Inter-Regular.woff2\"), format(\"woff\");"
+  , "  font-family: \"Agave\";"
+  , "  src: url(\"/font/Agave-Regular.woff2\"), format(\"woff\");"
   , "}"
   , "body {"
-  , "  font-family: \"Inter\";"
+  , "  font-family: \"Agave\";"
   , "  background-color: #000;"
   , "}"
   ]
@@ -82,6 +111,7 @@ green: afd900
 blue: 4fcde0
 orange: e09300
 pink: e16aa1
+
 -}
 leftsideStyling :: T.Text
 leftsideStyling = T.unlines
@@ -121,4 +151,34 @@ leftsideStyling = T.unlines
   , "  opacity: 0.5;"
   , "}"
   ]
+
+secretStyling :: T.Text
+secretStyling = T.unlines
+  [ "p {"
+  , "  font-size: 0.8em;"
+  , "  margin: 0;"
+  , "}"
+  , ".textbox {"
+  , "  display: flex;"
+  , "  margin: 10px;"
+  , "  flex-direction: row;"
+  , "  flex-wrap: wrap;"
+  , "  gap: 10px;"
+  , "  color: #e16aa1;"
+  , "  height: 10%;"
+  , "}"
+  , ".innertextbox {"
+  , "  box-shadow: 0px 1px 3px rgba(0,0,0,0.4);"
+  , "  border: solid 2px #fff;"
+  , "  padding: 10px;"
+  , "}" 
+  , "h3 {" 
+  , "  font-size: 2em;"
+  , "  margin: 0;"
+  , "}"
+  , "a {"
+  , "  color: #e16aa1;"
+  , "}"
+  ]
+
 
