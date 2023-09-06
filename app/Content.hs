@@ -25,55 +25,58 @@ leftSide = do
 tunesContent :: [(FilePath,String)] -> Html ()
 tunesContent tunes = do
   doctypehtml_ $ do
-    style_ . desktopAtRule $ T.concat 
+    style_ . desktopAtRule $ T.concat
       [ outsideStyling
-      , leftsideStyling 
+      , leftsideStyling
       , tunesStyling
-      , mainStyling 
+      , mainStyling
       ]
     body_ [class_ "outerflex"] $ do
       div_ [class_ "outerleft menu"] leftSide
-      div_ [class_ "outerright musicbox"] $ 
+      div_ [class_ "outerright musicbox"] $
         mapM_ (\(fp,txt) -> div_ [class_ "innermusicbox"] $
-          do h3_ $ a_ [href_ ("/tunes/" ++ T.pack fp)] $ toHtml fp; 
+          do h3_ $ a_ [href_ ("/tunes/" ++ T.pack fp)] $ toHtml fp;
              p_ $ toHtml txt;
         ) tunes
-      
+
 textContent :: [FilePath] -> Html ()
 textContent texts = do
   doctypehtml_ $ do
-    style_ . desktopAtRule $ T.concat 
+    style_ . desktopAtRule $ T.concat
       [ outsideStyling
-      , leftsideStyling 
+      , leftsideStyling
       , textsStyling
-      , mainStyling 
+      , mainStyling
       ]
     body_ [class_ "outerflex"] $ do
       div_ [class_ "outerleft menu"] leftSide
-      div_ [class_ "outterright textbox"] $ 
+      div_ [class_ "outterright textbox"] $
         mapM_ (\fp -> div_ [class_ "innertextbox"] $
           do h3_ $ a_ [href_ ("/texts/" ++ T.pack fp)] $ toHtml fp
         ) texts
-    
-secretContent :: Html ()
-secretContent = 
+
+secretContent :: String -> Html ()
+secretContent myScript =
   doctypehtml_ $ do
-    style_ . desktopAtRule $ T.concat 
+    script_ $ T.pack myScript
+    style_ . desktopAtRule $ T.concat
       [ outsideStyling
-      , leftsideStyling 
+      , leftsideStyling
       , secretStyling
-      , mainStyling 
+      , mainStyling
       ]
     body_ [class_ "outerflex"] $ do
       div_ [class_ "outerleft menu"] leftSide
-      div_ [class_ "outterright textbox"] $ 
-        h1_ "???"
+      div_ [class_ "outterright textbox"] $
+        h1_ [id_ "secret"] "???"
+
+
 
 wofferContent :: Html ()
 wofferContent = doctypehtml_ $ do
   body_ $ do
     h1_ "the woffer..."
     form_ [action_ "/woffer", enctype_ "multipart/form-data", method_ "post"] $ do
-      input_ [id_ "file", type_ "file", name_ "file"] 
+      input_ [id_ "file", type_ "file", name_ "file"]
       label_ [id_ "file-label", class_ "btn-1", for_ "file"] "upload that shit son"
       button_ [id_ "submit", type_ "submit"] "go! go!!!!"

@@ -18,10 +18,11 @@ import Data.ByteString.Lazy qualified as BS
 import Data.ByteString.Char8 qualified as BSC8
 
 import Content
+import Data.Foldable
 
 -- todo: make this a fold
 pairs :: Monoid a => [a] -> [(a,a)]
-pairs (a:b:xs) = (a,b):(pairs xs)
+pairs (a:b:xs) = (a,b):pairs xs
 pairs [a] = [(a, mempty)]
 pairs [] = []
 
@@ -31,11 +32,11 @@ main = do
   texts <- listDirectory "texts"
   -- This isn't as pretty as I'd like.
   let (as,bs) = unzip . pairs . sort $ tunes
-  bs' <- traverse readFile $ fmap (\a -> "tunes/" ++ a) bs
+  bs' <- traverse (readFile . ("tunes/" ++)) bs
   let tunes' = zip as bs'
-  _ <- traverse print tunes'
-  _ <- traverse print texts
-  scottyApp (app (tunes',texts)) >>= run 1999
+  traverse_ print tunes'
+  traverse_ print texts
+  scottyApp (app (tunes',texts)) >>= run 80
 
 type Tunes = [(FilePath,String)]
 type Texts = [FilePath]
@@ -50,14 +51,15 @@ io = liftIO
 app :: (Tunes,Texts) -> ScottyM ()
 app (tunes,texts) = do
   middleware static
-  get "/" do 
+  get "/" do
     html $ renderText homeContent
   get "/tunes" do
     html $ renderText (tunesContent tunes)
   get "/text" do
     html $ renderText (textContent texts)
   get "/secret" do
-    html $ renderText secretContent
+    script <- io $ readFile "disgusting.js"
+    html $ renderText (secretContent script)
   get "/woffer" do
     html $ renderText wofferContent
   post "/woffer" do
