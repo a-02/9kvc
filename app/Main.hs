@@ -59,6 +59,7 @@ app (tunes,texts) = do
     html $ renderText (textContent texts)
   get "/secret" do
     script <- io $ readFile "disgusting.js"
+    io . print $ "found: " ++ script
     html $ renderText (secretContent script)
   get "/woffer" do
     html $ renderText wofferContent
