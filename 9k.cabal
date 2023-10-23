@@ -3,8 +3,6 @@ name:               9k
 version:            0
 -- synopsis:
 -- description:
-license:            BSD-3-Clause
-license-file:       LICENSE
 author:             Seth Livy
 maintainer:         no-reply@goarmy.com
 -- copyright:
