@@ -38,7 +38,7 @@ main = do
   traverse_ print tunes'
   traverse_ print texts
   i <- randomRIO (0, 4)
-  scottyApp (app i (tunes',texts)) >>= run 8080
+  scottyApp (app i (tunes',texts)) >>= run 80
 
 type Tunes = [(FilePath,String)]
 type Texts = [FilePath]
