@@ -101,6 +101,7 @@ mainStyling = T.unlines
   , "}"
   , "body {"
   , "  font-family: \"Agave\";"
+  , "  background-image: url(\"/image/circuit.png\");"
   , "  background-color: #000;"
   , "}"
   ]

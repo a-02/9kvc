@@ -36,7 +36,7 @@ main = do
   let tunes' = zip as bs'
   traverse_ print tunes'
   traverse_ print texts
-  scottyApp (app (tunes',texts)) >>= run 80
+  scottyApp (app (tunes',texts)) >>= run 8080
 
 type Tunes = [(FilePath,String)]
 type Texts = [FilePath]
