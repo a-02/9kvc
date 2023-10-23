@@ -8,19 +8,20 @@ import Prelude hiding ((++))
 import Lucid
 import Style
 
-homeContent :: Html ()
-homeContent = do
+homeContent :: Int -> Html ()
+homeContent i = do
   doctypehtml_ $ do
-    style_ $ desktopAtRule $ T.concat [leftsideStyling ++ mainStyling]
-    body_ $ div_ [class_ "menu"] leftSide
+    style_ $ desktopAtRule $ T.concat [mainStyling ++ leftsideStyling]
+    body_ $ div_ [class_ "menu"] (leftSide i)
 
-leftSide :: Html ()
-leftSide = do
-    a_ [href_ "/", class_ "insideLeft white"] $ h1_ "9k.vc"
-    a_ [href_ "/tunes", class_ "insideLeft green "] $ h1_ "tunes"
-    a_ [href_ "mailto:nks@9k.vc", class_ "insideLeft blue"] $  h1_ "e-mail"
-    a_ [href_ "/text", class_ "insideLeft orange "] $ h1_ "text"
-    a_ [href_ "/secret", class_ "insideLeft pink"] $ h1_ "secret"
+leftSide :: Int -> Html ()
+leftSide i = sequence_ . take 5 . drop i . cycle $
+    [ a_ [href_ "/", class_ "insideLeft white"] $ h1_ "9k.vc"
+    , a_ [href_ "/tunes", class_ "insideLeft green "] $ h1_ "tunes"
+    , a_ [href_ "mailto:nks@9k.vc", class_ "insideLeft blue"] $  h1_ "e-mail"
+    , a_ [href_ "/text", class_ "insideLeft orange "] $ h1_ "text"
+    , a_ [href_ "/secret", class_ "insideLeft pink"] $ h1_ "secret"
+    ]
 
 tunesContent :: [(FilePath,String)] -> Html ()
 tunesContent tunes = do
@@ -28,11 +29,11 @@ tunesContent tunes = do
     style_ . desktopAtRule $ T.concat
       [ outsideStyling
       , leftsideStyling
-      , tunesStyling
       , mainStyling
+      , tunesStyling
       ]
     body_ [class_ "outerflex"] $ do
-      div_ [class_ "outerleft menu"] leftSide
+      div_ [class_ "outerleft menu"] (leftSide 2)
       div_ [class_ "outerright musicbox"] $
         mapM_ (\(fp,txt) -> div_ [class_ "innermusicbox"] $
           do h3_ $ a_ [href_ ("/tunes/" ++ T.pack fp)] $ toHtml fp;
@@ -45,11 +46,11 @@ textContent texts = do
     style_ . desktopAtRule $ T.concat
       [ outsideStyling
       , leftsideStyling
-      , textsStyling
       , mainStyling
+      , textsStyling
       ]
     body_ [class_ "outerflex"] $ do
-      div_ [class_ "outerleft menu"] leftSide
+      div_ [class_ "outerleft menu"] (leftSide 4)
       div_ [class_ "outterright textbox"] $
         mapM_ (\fp -> div_ [class_ "innertextbox"] $
           do h3_ $ a_ [href_ ("/texts/" ++ T.pack fp)] $ toHtml fp
@@ -62,11 +63,11 @@ secretContent myScript =
     style_ . desktopAtRule $ T.concat
       [ outsideStyling
       , leftsideStyling
-      , secretStyling
       , mainStyling
+      , secretStyling
       ]
     body_ [class_ "outerflex"] $ do
-      div_ [class_ "outerleft menu"] leftSide
+      div_ [class_ "outerleft menu"] (leftSide 1)
       div_ [class_ "outterright textbox"] $
         h1_ [id_ "secret"] "???"
 

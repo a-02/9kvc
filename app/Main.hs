@@ -14,6 +14,7 @@ import Network.Wai.Middleware.Static
 import Network.Wai.Parse
 import System.Directory
 import System.FilePath ((</>))
+import System.Random
 import Data.ByteString.Lazy qualified as BS
 import Data.ByteString.Char8 qualified as BSC8
 
@@ -36,7 +37,8 @@ main = do
   let tunes' = zip as bs'
   traverse_ print tunes'
   traverse_ print texts
-  scottyApp (app (tunes',texts)) >>= run 8080
+  i <- randomRIO (0, 4)
+  scottyApp (app i (tunes',texts)) >>= run 8080
 
 type Tunes = [(FilePath,String)]
 type Texts = [FilePath]
@@ -48,19 +50,17 @@ type Texts = [FilePath]
 io :: MonadIO m => IO a -> m a
 io = liftIO
 
-app :: (Tunes,Texts) -> ScottyM ()
-app (tunes,texts) = do
+app :: Int -> (Tunes,Texts) -> ScottyM ()
+app i (tunes,texts) = do
   middleware static
   get "/" do
-    html $ renderText homeContent
+    html $ renderText (homeContent i)
   get "/tunes" do
     html $ renderText (tunesContent tunes)
   get "/text" do
     html $ renderText (textContent texts)
   get "/secret" do
-    script <- io $ readFile "disgusting.js"
-    io . print $ "found: " ++ script
-    html $ renderText (secretContent script)
+    html $ renderText (secretContent "")
   get "/woffer" do
     html $ renderText wofferContent
   post "/woffer" do

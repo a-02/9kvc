@@ -60,6 +60,9 @@ tunesStyling = T.unlines
   , "a {"
   , "  color: #afd900;"
   , "}"
+  , "body {"
+  , "  background-image: url(\"/image/dissolve.png\");"
+  , "}"
   ]
 
 textsStyling :: T.Text
@@ -89,6 +92,9 @@ textsStyling = T.unlines
   , "a {"
   , "  color: #e09300;"
   , "}"
+  , "body {"
+  , "  background-image: url(\"/image/cyber.png\");"
+  , "}"
   ]
 
 
@@ -101,7 +107,7 @@ mainStyling = T.unlines
   , "}"
   , "body {"
   , "  font-family: \"Agave\";"
-  , "  background-image: url(\"/image/circuit.png\");"
+  , "  background-image: url(\"/image/oil.png\");"
   , "  background-color: #000;"
   , "}"
   ]
