@@ -2,9 +2,9 @@
 
 let
 
-  inherit (nixpkgs) pkgs;
+  pkgs = nixpkgs.pkgsMusl;
 
-  f = { mkDerivation, arithmoi, base, bv, bytestring, directory, hspec
+  ninek = { mkDerivation, arithmoi, base, bv, bytestring, directory, hspec
       , http-media, lib, lucid, network, scotty, servant, servant-server
       , sqlite-simple, text, time, wai, wai-middleware-static, warp, random
       }:
@@ -29,6 +29,7 @@ let
           "--ghc-option=-optl=-L${pkgs.gmp6.override { withStatic = true; }}/lib"
           "--ghc-option=-optl=-L${pkgs.zlib.static}/lib"
           "--ghc-option=-optl=-L${pkgs.musl}/lib"
+          "--ghc-option=-optl=-L${pkgs.libffi.overrideAttrs (old: { dontDisableStatic = true; })}/lib"
         ];
         mainProgram = "9k";
       };
@@ -37,9 +38,7 @@ let
                        then pkgs.haskellPackages
                        else pkgs.haskell.packages.${compiler};
 
-  variant = if doBenchmark then pkgs.haskell.lib.doBenchmark else pkgs.lib.id;
-
-  drv = variant (haskellPackages.callPackage f {});
+  drv = haskellPackages.callPackage ninek {}; 
 
 in
 
