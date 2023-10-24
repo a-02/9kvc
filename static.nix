@@ -1,4 +1,4 @@
-{ nixpkgs ? import <nixpkgs> {}, compiler ? "ghc928", doBenchmark ? false }:
+{ nixpkgs ? import <nixpkgs> {}, compiler ? "ghc944", doBenchmark ? false }:
 
 let
 
@@ -6,7 +6,7 @@ let
 
   f = { mkDerivation, arithmoi, base, bv, bytestring, directory, hspec
       , http-media, lib, lucid, network, scotty, servant, servant-server
-      , sqlite-simple, text, time, wai, wai-middleware-static, warp
+      , sqlite-simple, text, time, wai, wai-middleware-static, warp, random
       }:
       mkDerivation {
         pname = "9k";
@@ -18,7 +18,7 @@ let
         executableHaskellDepends = [
           arithmoi base bv bytestring directory http-media lucid network
           scotty sqlite-simple text time wai
-          wai-middleware-static warp
+          wai-middleware-static warp random
         ];
         license = lib.licenses.bsd3;
         enableSharedExecutables = false;
