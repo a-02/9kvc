@@ -97,7 +97,37 @@ textsStyling = T.unlines
   , "}"
   ]
 
-
+videoStyling :: T.Text
+videoStyling = T.unlines
+  [ "p {"
+  , "  font-size: 0.8em;"
+  , "  margin: 0;"
+  , "}"
+  , ".textbox {"
+  , "  display: flex;"
+  , "  margin: 10px;"
+  , "  flex-direction: row;"
+  , "  flex-wrap: wrap;"
+  , "  gap: 10px;"
+  , "  color: #e09e00;"
+  , "  height: 10%;"
+  , "}"
+  , ".innertextbox {"
+  , "  box-shadow: 0px 1px 3px rgba(0,0,0,0.4);"
+  , "  border: solid 2px #fff;"
+  , "  padding: 10px;"
+  , "}" 
+  , "h3 {" 
+  , "  font-size: 2em;"
+  , "  margin: 0;"
+  , "}"
+  , "a {"
+  , "  color: #d14031;"
+  , "}"
+  , "body {"
+  , "  background-image: url(\"/image/cyber.png\");"
+  , "}"
+  ]
 
 mainStyling :: T.Text
 mainStyling = T.unlines 
@@ -118,6 +148,7 @@ green: afd900
 blue: 4fcde0
 orange: e09300
 pink: e16aa1
+red: d10431
 
 -}
 leftsideStyling :: T.Text
@@ -137,6 +168,10 @@ leftsideStyling = T.unlines
   , ".white {"
   , "  color: white;"
   , "  border-bottom: solid 10px white;"
+  , "}"
+  , ".red {"
+  , "  color: #d14031;"
+  , "  border-bottom: solid 10px #d14031;"
   , "}"
   , ".green {"
   , "  color: #afd900;"
@@ -174,10 +209,11 @@ secretStyling = T.unlines
   , "  color: #e16aa1;"
   , "  height: 10%;"
   , "}"
-  , ".innertextbox {"
+  , "img {"
   , "  box-shadow: 0px 1px 3px rgba(0,0,0,0.4);"
   , "  border: solid 2px #fff;"
   , "  padding: 10px;"
+  , "  max-width: 20%;"
   , "}" 
   , "h3 {" 
   , "  font-size: 2em;"

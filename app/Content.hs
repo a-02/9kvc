@@ -20,7 +20,8 @@ leftSide i = sequence_ . take 5 . drop i . cycle $
     , a_ [href_ "/tunes", class_ "insideLeft green "] $ h1_ "tunes"
     , a_ [href_ "mailto:nks@9k.vc", class_ "insideLeft blue"] $  h1_ "e-mail"
     , a_ [href_ "/text", class_ "insideLeft orange "] $ h1_ "text"
-    , a_ [href_ "/secret", class_ "insideLeft pink"] $ h1_ "secret"
+    , a_ [href_ "/art", class_ "insideLeft red "] $ h1_ "art"
+    , a_ [href_ "/video", class_ "insideLeft pink"] $ h1_ "video"
     ]
 
 tunesContent :: [(FilePath,String)] -> Html ()
@@ -56,6 +57,38 @@ textContent texts = do
           do h3_ $ a_ [href_ ("/texts/" ++ T.pack fp)] $ toHtml fp
         ) texts
 
+artContent :: [FilePath] -> Html ()
+artContent pics = do
+  doctypehtml_ $ do
+    style_ . desktopAtRule $ T.concat
+      [ outsideStyling
+      , leftsideStyling
+      , mainStyling
+      , secretStyling
+      ]
+    body_ [class_ "outerflex"] $ do
+      div_ [class_ "outerleft menu"] (leftSide 5)
+      div_ [class_ "outterright textbox"] $
+        mapM_ (\fp -> 
+          do img_ [src_ ("/art/" ++ T.pack fp)]
+        ) pics
+
+videoContent :: [FilePath] -> Html ()
+videoContent pics = do
+  doctypehtml_ $ do
+    style_ . desktopAtRule $ T.concat
+      [ outsideStyling
+      , leftsideStyling
+      , mainStyling
+      , textsStyling
+      ]
+    body_ [class_ "outerflex"] $ do
+      div_ [class_ "outerleft menu"] (leftSide 3)
+      div_ [class_ "outterright textbox"] $
+        mapM_ (\fp -> div_ [class_ "innertextbox"] $
+          do video_ [controls_ "", width_ "30%"] $ source_ [src_ ("/video/" ++ T.pack fp), type_ "video/mp4"]
+        ) pics
+
 secretContent :: String -> Html ()
 secretContent myScript =
   doctypehtml_ $ do
@@ -64,7 +97,6 @@ secretContent myScript =
       [ outsideStyling
       , leftsideStyling
       , mainStyling
-      , secretStyling
       ]
     body_ [class_ "outerflex"] $ do
       div_ [class_ "outerleft menu"] (leftSide 1)
