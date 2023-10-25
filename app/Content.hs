@@ -52,7 +52,7 @@ textContent texts = do
       ]
     body_ [class_ "outerflex"] $ do
       div_ [class_ "outerleft menu"] (leftSide 4)
-      div_ [class_ "outterright textbox"] $
+      div_ [class_ "outerright textbox"] $
         mapM_ (\fp -> div_ [class_ "innertextbox"] $
           do h3_ $ a_ [href_ ("/texts/" ++ T.pack fp)] $ toHtml fp
         ) texts
@@ -68,13 +68,13 @@ artContent pics = do
       ]
     body_ [class_ "outerflex"] $ do
       div_ [class_ "outerleft menu"] (leftSide 5)
-      div_ [class_ "outterright textbox"] $
+      div_ [class_ "outerright textbox"] $
         mapM_ (\fp -> 
           do img_ [src_ ("/art/" ++ T.pack fp)]
         ) pics
 
 videoContent :: [FilePath] -> Html ()
-videoContent pics = do
+videoContent vids = do
   doctypehtml_ $ do
     style_ . desktopAtRule $ T.concat
       [ outsideStyling
@@ -84,10 +84,9 @@ videoContent pics = do
       ]
     body_ [class_ "outerflex"] $ do
       div_ [class_ "outerleft menu"] (leftSide 3)
-      div_ [class_ "outterright textbox"] $
-        mapM_ (\fp -> div_ [class_ "innertextbox"] $
-          do video_ [controls_ "", width_ "30%"] $ source_ [src_ ("/video/" ++ T.pack fp), type_ "video/mp4"]
-        ) pics
+      div_ [class_ "outerright textbox"] $
+        mapM_ (\fp -> video_ [controls_ "", width_ "30%"] $ source_ [src_ ("/video/" ++ T.pack fp), type_ "video/mp4"]
+        ) vids
 
 secretContent :: String -> Html ()
 secretContent myScript =
