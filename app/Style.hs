@@ -52,6 +52,7 @@ tunesStyling = T.unlines
   , "  box-shadow: 0px 1px 3px rgba(0,0,0,0.4);"
   , "  border: solid 2px #fff;"
   , "  padding: 10px;"
+  , "  background: rgba(0,0,0,0.7);"
   , "}" 
   , "h3 {" 
   , "  font-size: 1em;"
@@ -61,7 +62,7 @@ tunesStyling = T.unlines
   , "  color: #afd900;"
   , "}"
   , "body {"
-  , "  background-image: url(\"/image/dissolve.png\");"
+  , "  background-image: url(\"/image/circuit.png\");"
   , "}"
   ]
 
@@ -93,7 +94,7 @@ textsStyling = T.unlines
   , "  color: #e09300;"
   , "}"
   , "body {"
-  , "  background-image: url(\"/image/cyber.png\");"
+  , "  background-image: url(\"/image/solaris.png\");"
   , "}"
   ]
 
@@ -125,19 +126,19 @@ videoStyling = T.unlines
   , "  color: #d14031;"
   , "}"
   , "body {"
-  , "  background-image: url(\"/image/cyber.png\");"
+  , "  background-image: url(\"/image/turbulence.png\");"
   , "}"
   ]
 
 mainStyling :: T.Text
 mainStyling = T.unlines 
   [ "@font-face {"
-  , "  font-family: \"Agave\";"
-  , "  src: url(\"/font/Agave-Regular.woff2\"), format(\"woff\");"
+  , "  font-family: \"Public\";"
+  , "  src: url(\"/font/PublicSans-ExtraBold.woff2\"), format(\"woff\");"
   , "}"
   , "body {"
-  , "  font-family: \"Agave\";"
-  , "  background-image: url(\"/image/oil.png\");"
+  , "  font-family: \"Public\";"
+  , "  background-image: url(\"/image/circuit.png\");"
   , "  background-color: #000;"
   , "}"
   ]
@@ -155,19 +156,20 @@ leftsideStyling :: T.Text
 leftsideStyling = T.unlines
   [ ".menu {"
   , "  margin: 0;"
-  , "  display: grid;"
   , "}"
   , ".insideLeft {"
   , "  display: block;"
   , "  text-decoration: none;"
   , "}"
   , "h1 {"
-  , "  margin: 3vh 0px 0px 0px;"
-  , "  font-size: 9vh;"
+  , "  margin: 0px;"
+  , "  font-size: 10vh;"
+  , "  text-shadow: 5px 5px black;"
+  , "  line-height: 99%;"
   , "}"
   , ".white {"
   , "  color: white;"
-  , "  border-bottom: solid 10px white;"
+  , "  border-bottom: solid 10px black;"
   , "}"
   , ".red {"
   , "  color: #d14031;"

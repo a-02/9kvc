@@ -17,11 +17,11 @@ homeContent i = do
 leftSide :: Int -> Html ()
 leftSide i = sequence_ . take 5 . drop i . cycle $
     [ a_ [href_ "/", class_ "insideLeft white"] $ h1_ "9k.vc"
-    , a_ [href_ "/tunes", class_ "insideLeft green "] $ h1_ "tunes"
-    , a_ [href_ "mailto:nks@9k.vc", class_ "insideLeft blue"] $  h1_ "e-mail"
-    , a_ [href_ "/text", class_ "insideLeft orange "] $ h1_ "text"
-    , a_ [href_ "/art", class_ "insideLeft red "] $ h1_ "art"
-    , a_ [href_ "/video", class_ "insideLeft pink"] $ h1_ "video"
+    , a_ [href_ "/tunes", class_ "insideLeft green "] $ h1_ "NIGHTMARE WORLD"
+    , a_ [href_ "mailto:nks@9k.vc", class_ "insideLeft blue"] $  h1_ "ELECTRONIC MAIL"
+    , a_ [href_ "/text", class_ "insideLeft orange "] $ h1_ "MASSIVE BLOGPOSTS"
+    , a_ [href_ "/art", class_ "insideLeft red "] $ h1_ "DOPE PICS"
+    , a_ [href_ "/video", class_ "insideLeft pink"] $ h1_ "SICK VIDZ"
     ]
 
 tunesContent :: [(FilePath,String)] -> Html ()
